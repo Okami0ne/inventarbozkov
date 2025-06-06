@@ -15,14 +15,14 @@ if (!fs.existsSync(dbFolder)){
 }
 
 // Připojení k databázi
-const db = new sqlite3.Database(path.join(dbFolder, 'database.db'));
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database('./db/database.db');
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(session({ secret: 'admin_secret', resave: false, saveUninitialized: true }));
 
-const db = new sqlite3.Database('./db/database.db');
 
 app.get('/api/items', (req, res) => {
     db.all("SELECT * FROM inventory", (err, rows) => res.json(rows));
