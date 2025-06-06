@@ -5,6 +5,17 @@ const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const cors = require('cors');
+const fs = require('fs');
+const path = require('path');
+
+// Zajistí existenci složky db
+const dbFolder = path.join(__dirname, 'db');
+if (!fs.existsSync(dbFolder)){
+    fs.mkdirSync(dbFolder);
+}
+
+// Připojení k databázi
+const db = new sqlite3.Database(path.join(dbFolder, 'database.db'));
 
 app.use(cors());
 app.use(bodyParser.json());
