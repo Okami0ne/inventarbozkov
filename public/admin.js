@@ -1,1 +1,19 @@
-// admin.js placeholder
+
+const loginBtn = document.getElementById('loginBtn');
+const addItemBtn = document.getElementById('addItemBtn');
+const adminActionsHeader = document.getElementById('adminActionsHeader');
+const adminExpActionsHeader = document.getElementById('adminExpActionsHeader');
+
+loginBtn.addEventListener('click', () => {
+    const password = prompt('Zadejte admin heslo:');
+    if (password === 'admin123') {
+        alert('Přihlášení úspěšné!');
+        addItemBtn.classList.remove('d-none');
+        adminActionsHeader.classList.remove('d-none');
+        adminExpActionsHeader.classList.remove('d-none');
+        document.querySelectorAll('.admin-actions').forEach(el => el.classList.remove('d-none'));
+        document.querySelectorAll('.admin-exp-actions').forEach(el => el.classList.remove('d-none'));
+    } else {
+        alert('Neplatné heslo.');
+    }
+});
